@@ -1,6 +1,7 @@
 package inputs;
 
-import main.GamePanel;
+import main.GameEngine.GamePanel;
+import main.domain.gameObjects.Player;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
@@ -21,19 +22,26 @@ public class KeyboardInputs implements KeyListener {
 
     @Override
     public void keyPressed(KeyEvent e) {
-//        switch (e.getKeyCode()) {
-//            case KeyEvent.VK_W -> gamePanel.changeYDeltaValue(-5);
-//            case KeyEvent.VK_S -> gamePanel.changeYDeltaValue(5);
-//            case KeyEvent.VK_A -> gamePanel.changeXDeltaValue(-5);
-//            case KeyEvent.VK_D -> gamePanel.changeXDeltaValue(5);
-//
-//        }
-
-
+        switch (e.getKeyCode()) {
+            case KeyEvent.VK_W -> {
+                gamePanel.getPlayer().updatePosition(Player.PLAYER_ACTION_UP);
+            }
+            case KeyEvent.VK_S -> {
+                gamePanel.getPlayer().updatePosition(Player.PLAYER_ACTION_DOWN);
+            }
+            case KeyEvent.VK_A -> {
+                gamePanel.getPlayer().updatePosition(Player.PLAYER_ACTION_LEFT);
+            }
+            case KeyEvent.VK_D -> {
+                gamePanel.getPlayer().updatePosition(Player.PLAYER_ACTION_RIGHT);
+            }
+        }
     }
 
     @Override
     public void keyReleased(KeyEvent e) {
+        //gamePanel.getPirate().setCurrentAnimation(PirateObject.ANIMATION_STANDING);
+        gamePanel.getPlayer().updatePosition(Player.PLAYER_ACTION_STANDING);
 
 
     }
